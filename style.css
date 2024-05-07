@@ -10,24 +10,33 @@ h1{
 }
 .navbar ul{
     list-style-type: none;
-    background-color: grey;
+    background-color: white;
     padding: 0px;
     margin: 0px;
     overflow: hidden;
 }
 .navbar a{
-    color: white;
+    color: rgba(26, 83, 216, 0.483);
     text-decoration: none;
     padding: 15px;
     display: block;
     text-align: center;
 }
-.navbar a:hover{
-    background-color: black;
-}
+
 .navbar li{
     float: left;
 }
+/*NavBar*/
+.btn-outline-success {
+    border-color: rgb(107, 130, 215); /* Red border */
+}
+
+.btn-outline-success:hover {
+    background-color: rgba(128, 128, 128, 0.663); /* Red background on hover */
+
+}
+
+
 .areadrop{
     display: inline-block;
 }
