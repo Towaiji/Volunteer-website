@@ -17,8 +17,8 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 //submit Button
-const submit = document.getElementById('password');
-submit.addEventListener("click", function(event){
+const submit = document.getElementById('submit');
+submit.addEventListener("click", function (event){
     event.preventDefault()
     //inputs
     const email = document.getElementById('email').value;
