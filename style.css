@@ -1,0 +1,68 @@
+body{
+    margin: 0px;
+}
+main{
+    margin-left: 20px;
+    margin-right: 20px;
+}
+h1{
+    text-align: center;
+}
+.navbar ul{
+    list-style-type: none;
+    background-color: grey;
+    padding: 0px;
+    margin: 0px;
+    overflow: hidden;
+}
+.navbar a{
+    color: white;
+    text-decoration: none;
+    padding: 15px;
+    display: block;
+    text-align: center;
+}
+.navbar a:hover{
+    background-color: black;
+}
+.navbar li{
+    float: left;
+}
+.areadrop{
+    display: inline-block;
+}
+.areadrop button{
+    background-color: grey;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+}
+.areadrop a{
+    display: block;
+    color: black;
+    text-decoration: none;
+    padding: 10px 15px;
+}
+.areadrop .areas{
+    display: none;
+    position: absolute;
+    background-color: gray;
+    min-width: 100px;
+    box-shadow: 2px 2px 5px black;
+}
+.areadrop:hover .areas{
+    display: block;
+}
+.areadrop:hover button{
+    background-color: darkgray;
+}
+.areadrop a:hover{
+    background-color: lightgray;
+}
+.businesses{
+    background-color: lightgrey;
+    border: 2px;
+    height: 200px;
+    overflow: scroll;
+}
