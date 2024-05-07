@@ -1,7 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
-import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-auth.js";
-
+import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-auth.js";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -16,25 +15,30 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
-//submit Button
-const submit = document.getElementById('password');
-submit.addEventListener("click", function(event){
-    event.preventDefault()
-    //inputs
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
+// Get the Auth object
+const auth = getAuth();
+
+// Select the form and button
+const form = document.querySelector('form');
+const submitButton = form.querySelector('button');
+
+// Add event listener for form submission
+form.addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent default form submission behavior
+
+    // Get email and password values from input fields
+    const email = form.querySelector('input[type="email"]').value;
+    const password = form.querySelector('input[type="password"]').value;
+
     signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
-        // Signed up 
-        const user = userCredential.user;
-        alert("Logging in...")
-        window.location.href = "Home.html";
-        // ...
-    })
-    .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        alert(errorMessage)
-        // ..
-  });
-})
+            // Signed in
+            const user = userCredential.user;
+            alert("Logging in...");
+            window.location.href = "Home.html";
+        })
+        .catch((error) => {
+            const errorMessage = error.message;
+            alert(errorMessage);
+        });
+});
