@@ -7,35 +7,46 @@ main{
 }
 h1{
     text-align: center;
+    font-family: Palatino, URW Palladio L, serif;
 }
 .navbar ul{
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
     list-style-type: none;
-    background-color: white;
     padding: 0px;
     margin: 0px;
-    overflow: hidden;
+    overflow: hidden;   
 }
+.navbar ul li {
+    margin-left: 3px;
+    flex-direction: row-reverse; 
+    display: flex; 
+    align-items: center; 
+}
+
 .navbar a{
-    color: rgba(26, 83, 216, 0.483);
+    font-size: 18px;
+    color: rgb(82, 107, 181);
+    font-family: Gill Sans, sans-serif;
+    font-weight: bold;
     text-decoration: none;
     padding: 15px;
     display: block;
-    text-align: center;
 }
 
-.navbar li{
-    float: left;
-}
-/*NavBar*/
-.btn-outline-success {
-    border-color: rgb(107, 130, 215); /* Red border */
+.navbar a:hover{
+    background-color: rgb(190, 180, 180, 0.1);
 }
 
-.btn-outline-success:hover {
-    background-color: rgba(128, 128, 128, 0.663); /* Red background on hover */
-
+.navbar ul li img {
+    width: 16px; 
+    height: 16px; 
 }
-
+#login a{
+    color: rgb(107, 104, 104);
+    font-size: 15px;
+}
 
 .areadrop{
     display: inline-block;
