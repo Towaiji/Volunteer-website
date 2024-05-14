@@ -1,3 +1,8 @@
+.header {
+    display: grid;
+    grid-template-columns: auto auto;
+    align-items: center; 
+}
 body{
     margin: 0px;
 }
@@ -6,8 +11,13 @@ main{
     margin-right: 20px;
 }
 h1{
-    text-align: center;
-    font-family: Palatino, URW Palladio L, serif;
+    font-family: Aovel;
+    padding-left: 20px;
+    justify-self: start;
+    margin-top:60px;
+}
+.Title{
+    justify-self: start;
 }
 .navbar ul{
     display: flex;
@@ -26,9 +36,9 @@ h1{
 }
 
 .navbar a{
-    font-size: 18px;
+    font-size: 22px;
     color: rgb(8, 56, 202);
-    font-family: Gill Sans, sans-serif;
+    font-family: Aovel;
     font-weight: bold;
     text-decoration: none;
     padding: 15px;
@@ -85,4 +95,13 @@ h1{
     border: 2px;
     height: 200px;
     overflow: scroll;
+}
+/*Custom Font (Dealerplate California)*/
+@font-face{
+    font-family: "California";
+    src: url(Fonts/dealerplate\ california.ttf) format('truetype')
+}
+@font-face{
+    font-family: "Aovel";
+    src: url(Fonts/AovelSansRounded-rdDL.ttf) format('truetype')
 }
