@@ -32,7 +32,7 @@
                             href="#account-connections">Connections</a>
                         <a class="list-group-item list-group-item-action" data-toggle="list"
                             href="#account-notifications">Notifications</a>
-                        <a class="list-group-item list-group-item-action" data-toggle="list" href="Home.html">Go Back</a>
+                        <a class="list-group-item list-group-item-action" data-toggle="list" href="user.html">Go Back</a>
 
                     </div>
                 </div>
@@ -259,11 +259,11 @@
     <script>
         // JavaScript function to handle navigation to Home.html
         document.addEventListener("DOMContentLoaded", function () {
-            var goBackLink = document.querySelector('a[href="Home.html"]');
+            var goBackLink = document.querySelector('a[href="user.html"]');
             if (goBackLink) {
                 goBackLink.addEventListener("click", function (event) {
                     event.preventDefault(); // Prevent default action of anchor tag
-                    window.location.href = "Home.html"; // Navigate to Home.html
+                    window.location.href = "user.html"; // Navigate to user.html
                 });
             }
         });
