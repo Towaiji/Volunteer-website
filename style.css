@@ -95,8 +95,8 @@ h1{
 }
 .circle-icon {
     position: fixed;
-    top: 20px;
-    left: 20px; /* Change from right to left */
+    top: 15px;
+    right: 60px; /* Change from right to left */
     width: 40px;
     height: 40px;
     background-color: #007bff; /* Blue color, you can change it */
