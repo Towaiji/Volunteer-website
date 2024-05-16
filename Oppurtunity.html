@@ -1,62 +1,99 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-    <title>Volunteering website</title>
+    <title>Volunteering Opportunities - Volunteer Helper</title>
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body style="background-color: azure;">
-
-    <h1>Oppurtunities</h1>
-
-
+    <header>
+        <h1>Volunteering Opportunities</h1>
+    </header>
     <nav class="navbar">
         <ul>
             <li><a href="Home.html">Home</a></li>
             <li><a href="About.html">About Us</a></li>
-            <li><a href="Oppurtunity.html">Oppurtunities</a></li>
+            <li><a href="Oppurtunity.html">Opportunities</a></li>
             <li><a href="login.html">Log-in/Sign-up</a></li>
         </ul>
     </nav>
     <a href="user.html" class="circle-icon">
         <i class="fas fa-user"></i>
     </a>
-
     <main>
-        <h4>Get linked with businesses nearby</h4>
+        <section class="intro">
+            <h2>Explore Volunteering Opportunities</h2>
+            <p>Find opportunities that match your interests and make a difference in your community. Use the filters below to narrow down your search.</p>
+        </section>
+        <section class="filters">
+            <h3>Filter Opportunities</h3>
+            <form>
+                <label for="category">Category:</label>
+                <select id="category">
+                    <option value="all">All</option>
+                    <option value="environment">Environment</option>
+                    <option value="health">Health</option>
+                    <option value="education">Education</option>
+                    <!-- Add more categories as needed -->
+                </select>
+                <label for="location">Location:</label>
+                <select id="location">
+                    <option value="all">All</option>
+                    <option value="mississauga">Mississauga</option>
+                    <option value="toronto">Toronto</option>
+                    <option value="milton">Milton</option>
+                    <!-- Add more locations as needed -->
+                </select>
+                <label for="search">Search:</label>
+                <input type="text" id="search" placeholder="Search opportunities" onkeyup="filterOpportunities()">
+                <button type="button" onclick="filterOpportunities()">Apply Filters</button>
+            </form>
+        </section>
+        <section class="businesses">
+            <h3>Available Opportunities</h3>
+            <div class="opportunity" data-category="environment" data-location="mississauga">
+                <h4>The Home Depot - Shelf Stacker</h4>
+                <p>Help us keep our shelves organized and stocked. This is a great opportunity for those who enjoy organizing and working in a team.</p>
+                <p><strong>Location:</strong> Mississauga</p>
+                <a href="https://careers.homedepot.ca/about-us/community-awards" target="_blank">Apply</a>
+            </div>
+            <div class="opportunity" data-category="health" data-location="mississauga">
+                <h4>Credit Valley Hospital - Volunteer</h4>
+                <p>Join our team of volunteers and help make a difference in the lives of our patients. Various roles available.</p>
+                <p><strong>Location:</strong> Mississauga</p>
+                <a href="https://www.thp.ca/volunteers/Pages/Overview.aspx" target="_blank">Apply</a>
+            </div>
+            <!-- Add more opportunities as needed -->
+        </section>
     </main>
-
-    <div class="areadrop">
-        <button>Choose Area</button>
-        <div class="areas">
-            <a href="">Missisauga</a>
-            <a href="">Toronto</a>
-            <a href="">Milton</a>
-        </div>
-    </div>
-    <div class="businesses">
-        <p> The Home Depot, shelf stacker, <a href="https://careers.homedepot.ca/about-us/community-awards">Apply</a>
-        </p>
-        <p> Credit Valley Hospital, volunteer, <a href="https://www.thp.ca/volunteers/Pages/Overview.aspx">Apply</a></p>
-        <p> example, volunteer, <a href="">Apply</a></p>
-        <p> example, volunteer, <a href="">Apply</a></p>
-        <p> example, volunteer, <a href="">Apply</a></p>
-        <p> example, volunteer, <a href="">Apply</a></p>
-
-    </div>
-
     <footer>
         <hr>
         <h4>Contact Us</h4>
-        Mobile: <br>
-        Email:
+        <p>Mobile: [Insert Phone Number]</p>
+        <p>Email: [Insert Email Address]</p>
     </footer>
+    <script>
+        function filterOpportunities() {
+            const category = document.getElementById('category').value.toLowerCase();
+            const location = document.getElementById('location').value.toLowerCase();
+            const search = document.getElementById('search').value.toLowerCase();
+            const opportunities = document.querySelectorAll('.opportunity');
 
+            opportunities.forEach(opportunity => {
+                const opportunityCategory = opportunity.dataset.category.toLowerCase();
+                const opportunityLocation = opportunity.dataset.location.toLowerCase();
+                const opportunityText = opportunity.textContent.toLowerCase();
 
-
+                if (
+                    (category === 'all' || opportunityCategory === category) &&
+                    (location === 'all' || opportunityLocation === location) &&
+                    (search === '' || opportunityText.includes(search))
+                ) {
+                    opportunity.style.display = 'block';
+                } else {
+                    opportunity.style.display = 'none';
+                }
+            });
+        }
+    </script>
 </body>
-
-
-
 </html>
