@@ -1,32 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <title>log in form</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log in Form</title>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=poppins:wght@300;500;600&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="login.css">
     <script type="module" src="login.js" defer></script>
 </head>
-
 <body>
     <div class="background">
         <div class="shape"></div>
         <div class="shape"></div>
     </div>
 
-    <form action="#">
+    <form id="login-form">
         <h3>Login</h3>
 
-        <label for="username"> Username
-            <input type="email" placeholder="Email or Phone">
+        <label for="email"> Email
+            <input type="email" id="email" placeholder="Email or Phone" required>
         </label>
 
-        <label for="username"> Password
-            <input type="Password" placeholder="Password">
+        <label for="password"> Password
+            <input type="password" id="password" placeholder="Password" required>
         </label>
 
         <button type="submit">Log in</button>
@@ -41,9 +39,10 @@
         </div>
 
         <div class="form">
-            <p>Dont have an account? <a href="register.html">Create one</a></p>
+            <p>Don't have an account? <a href="register.html">Create one</a></p>
         </div>
+
+        <div id="error-message" style="color: red;"></div>
     </form>
 </body>
-
 </html>

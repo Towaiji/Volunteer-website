@@ -14,31 +14,28 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-
-// Get the Auth object
 const auth = getAuth();
 
-// Select the form and button
-const form = document.querySelector('form');
-const submitButton = form.querySelector('button');
+// Select the form
+const form = document.getElementById('register-form');
+const errorMessage = document.getElementById('error-message');
 
 // Add event listener for form submission
 form.addEventListener('submit', function(event) {
     event.preventDefault(); // Prevent default form submission behavior
 
     // Get email and password values from input fields
-    const email = form.querySelector('input[type="email"]').value;
-    const password = form.querySelector('input[type="password"]').value;
+    const email = form.email.value;
+    const password = form.password.value;
 
     createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
-            // Signed up 
+            // Signed up
             const user = userCredential.user;
             alert("Creating account...");
             window.location.href = "Home.html";
         })
         .catch((error) => {
-            const errorMessage = error.message;
-            alert(errorMessage);
+            errorMessage.textContent = error.message;
         });
 });
