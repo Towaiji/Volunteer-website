@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community Blog</title>
+    <link rel="stylesheet" href="community.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Community Blog</h1>
+        </header>
+        <main>
+            <div class="create-post">
+                <textarea id="postContent" placeholder="What's on your mind?"></textarea>
+                <button id="postButton">Post</button>
+            </div>
+            <div class="posts">
+                <!-- Example Post -->
+                <div class="post">
+                    <div class="post-header">
+                        <img src="user.jpg" alt="User" class="user-icon">
+                        <div>
+                            <h2>User Name</h2>
+                            <p>Posted on: May 16, 2024</p>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        <p>This is an example post about an opportunity or a milestone achieved. It can contain text, links, and more.</p>
+                    </div>
+                    <div class="post-actions">
+                        <button class="like-button"><i class="fas fa-thumbs-up"></i> Like (<span class="like-count">0</span>)</button>
+                        <button class="comment-button"><i class="fas fa-comment"></i> Comment</button>
+                        <button class="share-button"><i class="fas fa-share"></i> Share</button>
+                    </div>
+                    <div class="comments">
+                        <div class="comment">
+                            <p><strong>User 2:</strong> This is a sample comment.</p>
+                        </div>
+                    </div>
+                    <div class="add-comment">
+                        <input type="text" placeholder="Write a comment...">
+                        <button>Comment</button>
+                    </div>
+                </div>
+            </div>
+            <a href="user.html" class="circle-icon">
+                <i class="fas fa-user"></i>
+            </a>
+            <a href="Home.html" class="back-icon">
+                <i class="fas fa-arrow-left"></i>
+            </a>
+        </main>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const postsContainer = document.querySelector('.posts');
+            
+            // Handle post creation
+            document.getElementById('postButton').addEventListener('click', () => {
+                const postContent = document.getElementById('postContent').value;
+                if (postContent) {
+                    const newPost = createPost(postContent);
+                    postsContainer.prepend(newPost);
+                    document.getElementById('postContent').value = '';
+                }
+            });
+
+            // Function to create a new post
+            function createPost(content) {
+                const post = document.createElement('div');
+                post.classList.add('post');
+                post.innerHTML = `
+                    <div class="post-header">
+                        <img src="user.jpg" alt="User" class="user-icon">
+                        <div>
+                            <h2>User Name</h2>
+                            <p>Posted just now</p>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        <p>${content}</p>
+                    </div>
+                    <div class="post-actions">
+                        <button class="like-button"><i class="fas fa-thumbs-up"></i> Like (<span class="like-count">0</span>)</button>
+                        <button class="comment-button"><i class="fas fa-comment"></i> Comment</button>
+                        <button class="share-button"><i class="fas fa-share"></i> Share</button>
+                    </div>
+                    <div class="comments"></div>
+                    <div class="add-comment">
+                        <input type="text" placeholder="Write a comment...">
+                        <button>Comment</button>
+                    </div>
+                `;
+                addPostEventListeners(post);
+                return post;
+            }
+
+            function addPostEventListeners(post) {
+                // Handle like button
+                post.querySelector('.like-button').addEventListener('click', (e) => {
+                    const likeCount = post.querySelector('.like-count');
+                    likeCount.textContent = parseInt(likeCount.textContent) + 1;
+                });
+
+                // Handle comment button
+                post.querySelector('.comment-button').addEventListener('click', (e) => {
+                    const addCommentSection = post.querySelector('.add-comment');
+                    addCommentSection.querySelector('input').focus();
+                });
+
+                // Handle comment submission
+                post.querySelector('.add-comment button').addEventListener('click', (e) => {
+                    const commentInput = post.querySelector('.add-comment input');
+                    const commentText = commentInput.value;
+                    if (commentText) {
+                        const newComment = document.createElement('div');
+                        newComment.classList.add('comment');
+                        newComment.innerHTML = `<p><strong>You:</strong> ${commentText}</p>`;
+                        post.querySelector('.comments').appendChild(newComment);
+                        commentInput.value = '';
+                    }
+                });
+
+                // Handle share button (Placeholder functionality)
+                post.querySelector('.share-button').addEventListener('click', (e) => {
+                    alert("Post shared!");
+                });
+            }
+
+            // Add event listeners to initial posts
+            document.querySelectorAll('.post').forEach(post => addPostEventListeners(post));
+        });
+    </script>
+</body>
+</html>
