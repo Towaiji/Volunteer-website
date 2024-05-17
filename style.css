@@ -94,7 +94,7 @@ h1{
     overflow: scroll;
 }
 .circle-icon {
-    position: fixed;
+    position: absolute;
     top: 15px;
     right: 60px; /* Change from right to left */
     width: 40px;
