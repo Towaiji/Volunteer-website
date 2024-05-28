@@ -104,3 +104,26 @@ hr {
     background: #ddd;
     margin: 20px 0;
 }
+.card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-top: 20px;
+}
+.m-3 {
+    color: #007bff;
+    font-size: 1.8em;
+    margin-bottom: 20px;
+}
+.card-text {
+    font-size: 0.85rem;
+    color: #00000070;
+}
+.hourbtn {
+    color: black;
+}
+.progress {
+    margin-bottom: 10px;
+}
+
