@@ -22,24 +22,34 @@ onAuthStateChanged(auth, async (user) => {
     if (user) {
         // User is signed in
         console.log(user);
-        updateUserProfile(user);
+        await updateUserProfile(user);
     } else {
         // No user is signed in, redirect to login
-        alert("Create Account & login");
+        alert("Please create an account & login");
         window.location.href = "/register.html";
     }
 });
 
 // Function to update the user profile
-function updateUserProfile(user) {
-    const userName = user.displayName;
+async function updateUserProfile(user) {
+    const userName = user.displayName || "User"; // Default to "User" if displayName is not set
     const userEmail = user.email;
-    const userProfilePicture = user.photoURL;
+    const userProfilePicture = user.photoURL || "default-profile.png"; // Default to a placeholder image if photoURL is not set
 
     // Update the profile section with user data
     document.getElementById("userName").textContent = userName;
     document.getElementById("userEmail").textContent = userEmail;
     document.getElementById("userProfilePicture").src = userProfilePicture;
+
+    // Fetch additional user data from Firestore if needed
+    const userDoc = await getDoc(doc(db, "users", user.uid));
+    if (userDoc.exists()) {
+        const userData = userDoc.data();
+        // Update the profile with additional user data if available
+        if (userData.additionalInfo) {
+            document.getElementById("additionalInfo").textContent = userData.additionalInfo;
+        }
+    }
 }
 
 // Handle logout
