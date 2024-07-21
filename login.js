@@ -34,7 +34,7 @@ form.addEventListener('submit', function(event) {
             // Signed in
             const user = userCredential.user;
             alert("Logging in...");
-            window.location.href = "Home.html";
+            window.location.href = "Home2.html";
         })
         .catch((error) => {
             errorMessage.textContent = error.message;
