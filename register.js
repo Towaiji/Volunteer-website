@@ -27,6 +27,7 @@ form.addEventListener('submit', function(event) {
     // Get email and password values from input fields
     const email = form.email.value;
     const password = form.password.value;
+    const username = form.username.value;
 
     createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
