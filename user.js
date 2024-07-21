@@ -26,7 +26,7 @@ onAuthStateChanged(auth, async (user) => {
     } else {
         // No user is signed in, redirect to login
         alert("Please create an account & login");
-        window.location.href = "/register.html";
+        window.location.href = "/Home.html";
     }
 });
 
@@ -55,7 +55,7 @@ async function updateUserProfile(user) {
 // Handle logout
 document.getElementById('logout').addEventListener('click', () => {
     signOut(auth).then(() => {
-        window.location.href = "login.html";
+        window.location.href = "Home.html";
     }).catch((error) => {
         console.error("Sign out error", error);
     });
