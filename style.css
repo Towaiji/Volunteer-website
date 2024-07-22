@@ -88,9 +88,11 @@ h1{
     background-color: lightgray;
 }
 .businesses{
-    background-color: lightgrey;
-    border: 2px;
-    height: 200px;
+    background-color: rgb(215, 215, 215);
+    border: 10px;
+    height: 600px;
+    padding-left: 10px;
+    margin-top: 10px;
     overflow: scroll;
 }
 .circle-icon {
@@ -107,7 +109,18 @@ h1{
     cursor: pointer;
     color: #fff; /* White color for the icon */
 }
-
+.subtitle{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 30px;
+}
+p{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;;
+    font-size: 20px;
+}
+.extra{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; 
+    font-size: 20px;
+}
 /*Custom Font (Dealerplate California)*/
 @font-face{
     font-family: "California";

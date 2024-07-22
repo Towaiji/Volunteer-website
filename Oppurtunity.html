@@ -28,13 +28,13 @@
     </a>
     <main>
         <section class="intro">
-            <h2>Explore Volunteering Opportunities</h2>
+            <h2 class = "subtitle">Explore Volunteering Opportunities</h2>
             <p>Find opportunities that match your interests and make a difference in your community. Use the filters below to narrow down your search.</p>
         </section>
         <section class="filters">
-            <h3>Filter Opportunities</h3>
+            <h3 class = "subtitle">Filter Opportunities</h3>
             <form>
-                <label for="location">Location:</label>
+                <label class = "extra" for="location">Location:</label>
                 <select id="location">
                     <option value="all">All</option>
                     <option value="mississauga">Mississauga</option>
@@ -59,14 +59,14 @@
                     <option value="bolton">Bolton</option>
                     
                 </select>
-                <label for="search">Search:</label>
+                <label class = "extra" for="search">Search:</label>
                 <input type="text" id="search" placeholder="Search opportunities" onkeyup="filterOpportunities()">
-                <button type="button" onclick="filterOpportunities()">Apply Filters</button>
+                <button style = "font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-size: 15px" type="button" onclick="filterOpportunities()">Apply Filters</button>
             </form>
         </section>
         <section class="businesses">
-            <h3>Available Opportunities</h3>
-            <div id="data-container"></div>
+            <h2 style = "font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-size: 25px">Available Opportunities</h2>
+            <div style = "font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-size: 15px"id="data-container"></div>
             <!-- Add more opportunities as needed -->
         </section>
     </main>
@@ -88,7 +88,7 @@
             
                 const [title, href, location] = row;
      
-                const fullHref = href.includes('.jsp') ? href : `${href}.jsp`; // Fixing the links
+                const fullHref = href.includes('.jsp') ? href : `${href}.jsp`; 
             
                 
                 const opportunitySection = document.createElement('section');
@@ -104,7 +104,7 @@
                 container.appendChild(opportunitySection);
             });
             
-            // Apply filters after loading data
+            
             filterOpportunities();
         }
         
