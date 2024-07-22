@@ -9,11 +9,10 @@
     <div class="header">
         <h1>Opportunities</h1>
 
-
         <nav class="navbar">
             <ul id="login">
-                <li><a href="login.html">Login</a> </li>
-                
+                <li><a href="login.html">Login</a></li>
+                <li><a href="register.html">Register</a> </li>
             </ul>
             <ul>
                 <li><a href="Contact.html">Contact Us</a></li>
@@ -21,7 +20,6 @@
                 <li><a href="Oppurtunity.html">Opportunities</a></li>
                 <li><a href="About.html">About Us</a></li>
                 <li><a href="Home.html">Home</a></li>
-
             </ul>
         </nav>
     </div>
@@ -36,21 +34,30 @@
         <section class="filters">
             <h3>Filter Opportunities</h3>
             <form>
-                <label for="category">Category:</label>
-                <select id="category">
-                    <option value="all">All</option>
-                    <option value="environment">Environment</option>
-                    <option value="health">Health</option>
-                    <option value="education">Education</option>
-                    <!-- Add more categories as needed -->
-                </select>
                 <label for="location">Location:</label>
                 <select id="location">
                     <option value="all">All</option>
                     <option value="mississauga">Mississauga</option>
                     <option value="toronto">Toronto</option>
                     <option value="milton">Milton</option>
-                    <!-- Add more locations as needed -->
+                    
+                    <option value="toronto">Toronto</option>
+                    <option value="burlington">Burlington</option>
+                    <option value="north_york">North York</option>
+                    <option value="mississauga">Mississauga</option>
+                    <option value="markham">Markham</option>
+                    <option value="scarborough">Scarborough</option>
+                    <option value="vaughan">Vaughan</option>
+                    <option value="oakville">Oakville</option>
+                    <option value="brampton">Brampton</option>
+                    <option value="downsview">Downsview</option>
+                    <option value="caledon">Caledon</option>
+                    <option value="richmond_hill">Richmond Hill</option>
+                    <option value="york_region">York Region</option>
+                    <option value="berkeley_ca">Berkeley</option>
+                    <option value="canada_us_wide">Canada & US Wide</option>
+                    <option value="bolton">Bolton</option>
+                    
                 </select>
                 <label for="search">Search:</label>
                 <input type="text" id="search" placeholder="Search opportunities" onkeyup="filterOpportunities()">
@@ -59,39 +66,60 @@
         </section>
         <section class="businesses">
             <h3>Available Opportunities</h3>
-            <div class="opportunity" data-category="environment" data-location="mississauga">
-                <h4>The Home Depot - Shelf Stacker</h4>
-                <p>Help us keep our shelves organized and stocked. This is a great opportunity for those who enjoy organizing and working in a team.</p>
-                <p><strong>Location:</strong> Mississauga</p>
-                <a href="https://careers.homedepot.ca/about-us/community-awards" target="_blank">Apply</a>
-            </div>
-            <div class="opportunity" data-category="health" data-location="mississauga">
-                <h4>Credit Valley Hospital - Volunteer</h4>
-                <p>Join our team of volunteers and help make a difference in the lives of our patients. Various roles available.</p>
-                <p><strong>Location:</strong> Mississauga</p>
-                <a href="https://www.thp.ca/volunteers/Pages/Overview.aspx" target="_blank">Apply</a>
-            </div>
+            <div id="data-container"></div>
             <!-- Add more opportunities as needed -->
         </section>
     </main>
     <footer>
     </footer>
     <script>
+        async function loadScrapedData() {
+            const response = await fetch('scraped_data.csv');
+            const csvText = await response.text();
+            
+            const rows = csvText.split('\n').map(row => row.split(',').map(field => field.replace(/^"|"$/g, '')));
+            
+            const container = document.getElementById('data-container');
+
+            container.innerHTML = '';
+            
+            rows.forEach((row, index) => {
+                if (index === 0 || row.length < 3) return; 
+            
+                const [title, href, location] = row;
+     
+                const fullHref = href.includes('.jsp') ? href : `${href}.jsp`; // Fixing the links
+            
+                
+                const opportunitySection = document.createElement('section');
+                opportunitySection.classList.add('opportunity'); 
+                opportunitySection.dataset.location = location.toLowerCase(); 
+                opportunitySection.innerHTML = `
+                    <h2>${title}</h2>
+                    <ul>
+                        <li><a href="${fullHref}">Apply Now</a></li>
+                        <li>${location}</li>
+                    </ul>
+                `;
+                container.appendChild(opportunitySection);
+            });
+            
+            // Apply filters after loading data
+            filterOpportunities();
+        }
+        
         function filterOpportunities() {
-            const category = document.getElementById('category').value.toLowerCase();
             const location = document.getElementById('location').value.toLowerCase();
             const search = document.getElementById('search').value.toLowerCase();
             const opportunities = document.querySelectorAll('.opportunity');
-
+            
             opportunities.forEach(opportunity => {
-                const opportunityCategory = opportunity.dataset.category.toLowerCase();
-                const opportunityLocation = opportunity.dataset.location.toLowerCase();
-                const opportunityText = opportunity.textContent.toLowerCase();
-
+                const titleText = opportunity.querySelector('h2').textContent.toLowerCase();
+                const opportunityLocation = opportunity.dataset.location;
+            
                 if (
-                    (category === 'all' || opportunityCategory === category) &&
                     (location === 'all' || opportunityLocation === location) &&
-                    (search === '' || opportunityText.includes(search))
+                    (search === '' || titleText.includes(search))
                 ) {
                     opportunity.style.display = 'block';
                 } else {
@@ -99,6 +127,10 @@
                 }
             });
         }
+        
+        
+        window.onload = loadScrapedData;
+        
     </script>
 
 </body>
