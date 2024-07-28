@@ -1,6 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
 import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js";
-import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js";
 
 // Firebase configuration
 const firebaseConfig = {
@@ -15,7 +14,7 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-const db = getFirestore(app);
+const user = auth.currentUser;
 
 // Check if user is logged in
 onAuthStateChanged(auth, async (user) => {
@@ -34,7 +33,7 @@ onAuthStateChanged(auth, async (user) => {
 async function updateUserProfile(user) {
     const userName = user.displayName || "User"; // Default to "User" if displayName is not set
     const userEmail = user.email;
-    const userProfilePicture = user.photoURL || "default-profile.png"; // Default to a placeholder image if photoURL is not set
+    const userProfilePicture = user.photoURL || "user.jpg"; // Default to a placeholder image if photoURL is not set
 
     // Update the profile section with user data
     document.getElementById("userName").textContent = userName;
