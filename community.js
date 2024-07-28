@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js";
-import { getFirestore, collection, addDoc, query, orderBy, onSnapshot } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js";
+import { getFirestore, collection, addDoc, query, orderBy, onSnapshot, doc, updateDoc, increment } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js";
 
 // Firebase configuration
 const firebaseConfig = {
@@ -19,7 +19,7 @@ const db = getFirestore(app);
 
 document.addEventListener('DOMContentLoaded', () => {
     const postsContainer = document.querySelector('.posts');
-    
+
     // Handle post creation
     document.getElementById('postButton').addEventListener('click', async () => {
         const postContent = document.getElementById('postContent').value;
@@ -30,8 +30,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 await addDoc(collection(db, 'posts'), {
                     authorName: user.displayName,
                     authorEmail: user.email,
+                    authorId: user.uid,
                     content: postContent,
-                    timestamp: new Date()
+                    timestamp: new Date(),
+                    likes: 0 // Initialize likes to 0
                 });
                 document.getElementById('postContent').value = '';
             } catch (error) {
@@ -49,20 +51,21 @@ document.addEventListener('DOMContentLoaded', () => {
         postsContainer.innerHTML = '';
         querySnapshot.forEach((doc) => {
             const post = doc.data();
-            const newPost = createPost(post);
+            const postId = doc.id;
+            const newPost = createPost(post, postId);
             postsContainer.appendChild(newPost);
         });
     });
 
     // Function to create a new post
-    function createPost(postData) {
+    function createPost(postData, postId) {
         const post = document.createElement('div');
         post.classList.add('post');
         post.innerHTML = `
             <div class="post-header">
                 <img src="user.jpg" alt="User" class="user-icon">
                 <div>
-                    <h2>${postData.authorName}</h2>
+                    <h2><a href="userProfile.html?uid=${postData.authorId}" class="user-link">${postData.authorName}</a></h2>
                     <p>Posted on: ${new Date(postData.timestamp.seconds * 1000).toLocaleString()}</p>
                 </div>
             </div>
@@ -70,25 +73,34 @@ document.addEventListener('DOMContentLoaded', () => {
                 <p>${postData.content}</p>
             </div>
             <div class="post-actions">
-                <button class="like-button"><i class="fas fa-thumbs-up"></i> Like (<span class="like-count">0</span>)</button>
+                <button class="like-button"><i class="fas fa-thumbs-up"></i> Like (<span class="like-count">${postData.likes}</span>)</button>
                 <button class="comment-button"><i class="fas fa-comment"></i> Comment</button>
                 <button class="share-button"><i class="fas fa-share"></i> Share</button>
             </div>
-            <div class="comments"></div>
+            <div class="comments" id="comments-${postId}"></div>
             <div class="add-comment">
-                <input type="text" placeholder="Write a comment...">
-                <button>Comment</button>
+                <input type="text" placeholder="Write a comment..." class="comment-input">
+                <button class="comment-submit">Comment</button>
             </div>
         `;
-        addPostEventListeners(post);
+        addPostEventListeners(post, postId);
         return post;
     }
 
-    function addPostEventListeners(post) {
+    function addPostEventListeners(post, postId) {
         // Handle like button
-        post.querySelector('.like-button').addEventListener('click', (e) => {
+        post.querySelector('.like-button').addEventListener('click', async (e) => {
             const likeCount = post.querySelector('.like-count');
-            likeCount.textContent = parseInt(likeCount.textContent) + 1;
+            const user = auth.currentUser;
+            if (user) {
+                try {
+                    await updateDoc(doc(db, 'posts', postId), {
+                        likes: increment(1)
+                    });
+                } catch (error) {
+                    console.error("Error updating likes: ", error);
+                }
+            }
         });
 
         // Handle comment button
@@ -98,22 +110,48 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         // Handle comment submission
-        post.querySelector('.add-comment button').addEventListener('click', (e) => {
-            const commentInput = post.querySelector('.add-comment input');
+        post.querySelector('.comment-submit').addEventListener('click', async (e) => {
+            const commentInput = post.querySelector('.comment-input');
             const commentText = commentInput.value;
-            if (commentText) {
-                const newComment = document.createElement('div');
-                newComment.classList.add('comment');
-                newComment.innerHTML = `<p><strong>You:</strong> ${commentText}</p>`;
-                post.querySelector('.comments').appendChild(newComment);
-                commentInput.value = '';
+            const user = auth.currentUser;
+
+            if (commentText && user) {
+                try {
+                    await addDoc(collection(db, 'posts', postId, 'comments'), {
+                        authorName: user.displayName,
+                        authorId: user.uid,
+                        content: commentText,
+                        timestamp: new Date()
+                    });
+                    commentInput.value = '';
+                } catch (error) {
+                    console.error("Error adding comment: ", error);
+                    alert("Error adding comment: " + error.message);
+                }
             }
         });
 
-        // Handle share button (Placeholder functionality)
-        post.querySelector('.share-button').addEventListener('click', (e) => {
-            alert("Post shared!");
+        // Load comments
+        const commentsContainer = post.querySelector(`#comments-${postId}`);
+        const commentsQuery = query(collection(db, 'posts', postId, 'comments'), orderBy('timestamp', 'asc'));
+        onSnapshot(commentsQuery, (querySnapshot) => {
+            commentsContainer.innerHTML = '';
+            querySnapshot.forEach((doc) => {
+                const comment = doc.data();
+                const newComment = createComment(comment);
+                commentsContainer.appendChild(newComment);
+            });
         });
+    }
+
+    function createComment(commentData) {
+        const comment = document.createElement('div');
+        comment.classList.add('comment');
+        comment.innerHTML = `
+            <p><strong>${commentData.authorName}:</strong> ${commentData.content}</p>
+            <p class="comment-timestamp">${new Date(commentData.timestamp.seconds * 1000).toLocaleString()}</p>
+        `;
+        return comment;
     }
 
     // Check if user is logged in
