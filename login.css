@@ -92,3 +92,31 @@ button{
     color: #080710;
     border-radius: 5px;
 }
+.social button {
+    background-color: rgba(255, 255, 255, 0.07);
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 3px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    display: flexbox;
+    align-items: center;
+}
+
+.social button i {
+    margin-right: 8px;
+}
+
+.social button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Smaller buttons for Google and Facebook */
+.social button.go,
+.social button.fb {
+    font-size: 12px;
+    padding: 8px 12px;
+    width: 120px;
+    height: 35px;
+}
