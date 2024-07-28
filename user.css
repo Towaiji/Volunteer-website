@@ -126,4 +126,133 @@ hr {
 .progress {
     margin-bottom: 10px;
 }
+.profile-pic-container {
+    position: relative;
+    display: inline-block;
+}
 
+.profile-pic {
+    border-radius: 50%;
+}
+
+.overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    overflow: hidden;
+    width: 100%;
+    height: 0;
+    border-radius: 50%;
+    transition: .01s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-pic-container:hover .overlay {
+    height: 100%;
+    cursor: pointer;
+}
+
+.change-pic-btn {
+    color: white;
+    font-size: 20px;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.change-pic-btn i {
+    margin-right: 5px;
+}
+
+/* General styles for the profile picture and overlay */
+.profile-pic-container {
+    position: relative;
+    display: inline-block;
+}
+
+.profile-pic {
+    border-radius: 50%;
+}
+
+
+.profile-pic-container:hover .overlay {
+    height: 100%;
+    cursor: pointer;
+}
+
+.change-pic-btn {
+    color: white;
+    font-size: 20px;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.change-pic-btn i {
+    margin-right: 5px;
+}
+
+/* Styles for the form controls */
+.form-control {
+    margin-bottom: 15px;
+}
+
+/* Styles for the buttons */
+.hourbtn, .save-bio-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
+
+.hourbtn:hover, .save-bio-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Hide save bio button initially */
+#saveBioButton {
+    display: none;
+}
+
+/* Topbar styles */
+.topbar a {
+    color: #007bff;
+    text-decoration: none;
+    padding: 10px;
+    font-size: 18px;
+}
+
+.topbar a:hover {
+    text-decoration: underline;
+}
+
+
+textarea.form-control {
+    resize: none;
+}
+
+/* Google sign-in button */
+.google-signin-btn {
+    background-color: #4285F4;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
+
+.google-signin-btn:hover {
+    background-color: #357ae8;
+}

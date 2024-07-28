@@ -1,40 +1,47 @@
 .header {
     display: grid;
     grid-template-columns: auto auto;
-    align-items: center; 
+    align-items: center;
 }
-body{
+
+body {
     margin: 0px;
 }
-main{
+
+main {
     margin-left: 20px;
     margin-right: 20px;
 }
-h1{
+
+h1 {
     font-family: Aovel;
     padding-left: 20px;
     justify-self: start;
-    margin-top:60px;
+    margin-top: 60px;
 }
-.Title{
+
+.Title {
     justify-self: start;
 }
-.navbar ul{
+
+.navbar ul {
     display: flex;
     flex-direction: row-reverse;
     align-items: center;
     list-style-type: none;
     padding: 0px;
     margin: 0px;
-    overflow: hidden;   
+    overflow: hidden;
 }
+
 .navbar ul li {
     margin-left: 3px;
-    flex-direction: row-reverse; 
-    display: flex; 
-    align-items: center; 
+    flex-direction: row-reverse;
+    display: flex;
+    align-items: center;
 }
-.navbar a{
+
+.navbar a {
     font-size: 22px;
     color: rgb(8, 56, 202);
     font-family: Aovel;
@@ -43,78 +50,108 @@ h1{
     padding: 15px;
     display: block;
 }
-.navbar a:hover{
+
+.navbar a:hover {
     background-color: rgb(190, 180, 180, 0.1);
 }
+
 .navbar ul li img {
-    width: 16px; 
-    height: 16px; 
+    width: 16px;
+    height: 16px;
 }
-#login a{
+
+#login a {
     color: rgb(107, 104, 104);
     font-size: 15px;
 }
 
-.areadrop{
+.areadrop {
     display: inline-block;
 }
-.areadrop button{
+
+.areadrop button {
     background-color: grey;
     color: white;
     padding: 10px 15px;
     border: none;
     cursor: pointer;
 }
-.areadrop a{
+
+.areadrop a {
     display: block;
     color: black;
     text-decoration: none;
     padding: 10px 15px;
 }
-.areadrop .areas{
+
+.areadrop .areas {
     display: none;
     position: absolute;
     background-color: gray;
     min-width: 100px;
     box-shadow: 2px 2px 5px black;
 }
-.areadrop:hover .areas{
+
+.areadrop:hover .areas {
     display: block;
 }
-.areadrop:hover button{
+
+.areadrop:hover button {
     background-color: darkgray;
 }
-.areadrop a:hover{
+
+.areadrop a:hover {
     background-color: lightgray;
 }
-.businesses{
+
+.businesses {
     background-color: lightgrey;
     border: 2px;
     height: 200px;
     overflow: scroll;
 }
+
 .circle-icon {
     position: absolute;
     top: 15px;
-    right: 60px; /* Change from right to left */
+    right: 60px;
+    /* Change from right to left */
     width: 40px;
     height: 40px;
-    background-color: #007bff; /* Blue color, you can change it */
+    background-color: #007bff;
+    /* Blue color, you can change it */
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    color: #fff; /* White color for the icon */
+    color: #fff;
+    /* White color for the icon */
+}
+
+.subtitle {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 30px;
+}
+
+p {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    ;
+    font-size: 20px;
+}
+
+.extra {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 20px;
 }
 
 /*Custom Font (Dealerplate California)*/
-@font-face{
+@font-face {
     font-family: "California";
     src: url(Fonts/dealerplate\ california.ttf) format('truetype')
 }
-@font-face{
+
+@font-face {
     font-family: "Aovel";
     src: url(Fonts/AovelSansRounded-rdDL.ttf) format('truetype')
 }
-
