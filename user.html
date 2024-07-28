@@ -1,17 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>User Profile</title>
     <link rel="stylesheet" type="text/css" href="bootstrap-4.5.3-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="user.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script type="module" src="user.js" defer></script>
 </head>
-
 <body>
     <div class="container">
         <div class="main">
@@ -25,9 +23,14 @@
                 <div class="col-md-4 mt-1">
                     <div class="card text-center sidebar">
                         <div class="card-body">
-                            <img src="user.jpg" id="userProfilePicture" class="rounded-circle" width="150">
+                            <div class="profile-pic-container">
+                                <img src="user.jpg" id="userProfilePicture" class="rounded-circle profile-pic" width="150">
+                                <div class="overlay">
+                                    <button class="change-pic-btn"><i class="fas fa-camera"></i> Change</button>
+                                    <input type="file" id="fileInput" style="display: none;">
+                                </div>
+                            </div>
                             <div class="mt-3">
-                                
                                 <a href="Home2.html">Home</a>
                                 <a href="">Work</a>
                                 <a href="">Support</a>
@@ -46,7 +49,6 @@
                                     <h5>Full Name:</h5>
                                 </div>
                                 <div class="col-md-9 text-secondary" id="userName">
-                                    
                                 </div>
                             </div>
                             <div class="row">
@@ -54,39 +56,34 @@
                                     <h5>Email:</h5>
                                 </div>
                                 <div class="col-md-9 text-secondary" id="userEmail">
-
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="card mb-3 content">
-                        <h1 class="m-3">Projects</h1>
+                        <h1 class="m-3">Bio</h1>
                         <div class="row">
-                            <div class="col-md-3">
-                                <h5>Project Name</h5>
-                            </div>
-                            <div class="col-md-9 text-secondary">
-                                Project Description
+                            <div class="col-md-12">
+                                <textarea id="userBio" class="form-control" rows="5" placeholder="Enter your bio"></textarea>
                             </div>
                         </div>
+                        <button class="hourbtn" id="saveBioButton">Save Bio</button>
                     </div>
                     <div class="card" style="width: 50rem;">
                         <div class="card-body">
                             <h1 class="m-3">Hours Completed</h1>
-                            <div class="progress" role="progressbar" aria-label="Example with label" aria-valuenow="25"
+                            <div class="progress" role="progressbar" aria-label="Example with label" aria-valuenow="0"
                                 aria-valuemin="0" aria-valuemax="100">
-                                <div class="progress-bar" style="width: 25%">25%</div>
+                                <div class="progress-bar" id="progressBar" style="width: 0%">0%</div>
                             </div>
-                            <p class="card-text">With supporting text below as a natural lead-in to additional content.
-                            </p>
-                            <a href="#" class="hourbtn">Add more hours</a>
+                            <p class="card-text">Canadians must finish 40 hours of unpaid services</p>
+                            <input type="number" id="hoursInput" class="form-control" placeholder="Enter hours completed">
+                            <button class="hourbtn" id="updateButton">Update Hours</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
 </body>
-
 </html>
