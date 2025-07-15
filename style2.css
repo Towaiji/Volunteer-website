@@ -154,6 +154,25 @@ p {
 @font-face {
     font-family: "Aovel";
     src: url(Fonts/AovelSansRounded-rdDL.ttf) format('truetype')
+}
+/* Dark mode styles */
+body.dark {
+    background-color: #222;
+    color: #f4f4f4;
+}
+body.dark a {
+    color: #9fd4ff;
+}
+body.dark .navbar a {
+    color: #9fd4ff;
+}
+body.dark .navbar a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+body.dark .header {
+    background-color: #333;
+}
+
 }.hero {
     background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('bg.jpg') center/cover;
     color: #fff;
