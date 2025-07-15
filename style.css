@@ -1,10 +1,17 @@
 .header {
-    display: grid;
-    grid-template-columns: auto auto;
-    align-items: center; 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(135deg, #1845ad, #23a2f6);
+    padding: 10px 20px;
+    color: #fff;
 }
 body{
     margin: 0px;
+    font-family: 'Poppins', sans-serif;
+    background-color: #f4f7fa;
+    color: #333;
+    line-height: 1.6;
 }
 main{
     margin-left: 20px;
@@ -35,23 +42,22 @@ h1{
     align-items: center; 
 }
 .navbar a{
-    font-size: 22px;
-    color: rgb(8, 56, 202);
-    font-family: Aovel;
-    font-weight: bold;
+    font-size: 20px;
+    color: #fff;
+    font-weight: 600;
     text-decoration: none;
-    padding: 15px;
+    padding: 10px 15px;
     display: block;
 }
 .navbar a:hover{
-    background-color: rgb(190, 180, 180, 0.1);
+    background-color: rgba(255,255,255,0.1);
 }
 .navbar ul li img {
     width: 16px; 
     height: 16px; 
 }
 #login a{
-    color: rgb(107, 104, 104);
+    color: #fff;
     font-size: 15px;
 }
 
@@ -116,7 +122,7 @@ p{
     font-size: 20px;
 }
 .extra{
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; 
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-size: 20px;
 }
 /*Custom Font (Dealerplate California)*/
@@ -127,5 +133,12 @@ p{
 @font-face{
     font-family: "Aovel";
     src: url(Fonts/AovelSansRounded-rdDL.ttf) format('truetype')
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+    color: #555;
 }
 
