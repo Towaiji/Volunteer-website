@@ -173,7 +173,7 @@ body.dark .header {
     background-color: #333;
 }
 
-}.hero {
+.hero {
     background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('bg.jpg') center/cover;
     color: #fff;
     padding: 60px 20px;
