@@ -154,4 +154,31 @@ p {
 @font-face {
     font-family: "Aovel";
     src: url(Fonts/AovelSansRounded-rdDL.ttf) format('truetype')
+}.hero {
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('bg.jpg') center/cover;
+    color: #fff;
+    padding: 60px 20px;
+    text-align: center;
+    animation: fadeIn 1.5s ease-in;
+}
+.hero h2 {
+    font-family: California;
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+.cta-button {
+    display: inline-block;
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+.cta-button:hover {
+    background-color: #0056b3;
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
