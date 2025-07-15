@@ -1,10 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
     const toggle = document.getElementById('toggleDark');
     const apply = () => {
-        if (localStorage.getItem('dark-mode') === 'true') {
+        const enabled = localStorage.getItem('dark-mode') === 'true';
+        if (enabled) {
             document.body.classList.add('dark');
+            document.body.style.backgroundColor = '#222';
         } else {
             document.body.classList.remove('dark');
+            document.body.style.backgroundColor = 'azure';
         }
     };
     apply();
