@@ -5,9 +5,11 @@ document.addEventListener('DOMContentLoaded', () => {
         if (enabled) {
             document.body.classList.add('dark');
             document.body.style.backgroundColor = '#222';
+            if (toggle) toggle.textContent = '☀️';
         } else {
             document.body.classList.remove('dark');
             document.body.style.backgroundColor = 'azure';
+            if (toggle) toggle.textContent = '🌙';
         }
     };
     apply();
